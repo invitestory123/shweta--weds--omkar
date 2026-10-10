@@ -1,0 +1,15 @@
+WEDDING INVITATION — MOTION HANDOFF
+
+The door and hand videos are already included and wired up.
+
+- Opening: assets/door.mp4, played once, from its matching poster through its natural end. Skip and blocked-video fallback are available.
+- Hands: assets/hands.mp4, loaded only when visible, played once, final frame retained.
+- Blessing and family: CSS lamp glows over the original illustrations.
+- Ceremony: glows, twinkles, drifting petals and lake shimmer.
+- Reception: animated fairy lights, candle glows, twinkles and lake shimmer.
+
+Motion respects the system reduced-motion preference, the page's Pause motion button and document visibility. Scene effects pause when off screen. No additional video generation is required for these edits.
+
+The client requested Jashn-e-Bahaaraa instrumental. The audio asset has not been supplied; see README.md for the existing music hook.
+
+Run npm run build before publishing. Publish only dist/. Do not edit dist/ directly or publish the private WhatsApp export.

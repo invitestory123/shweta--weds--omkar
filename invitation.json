@@ -1,0 +1,98 @@
+{
+  "couple": {
+    "groom": "Omkar Chavan",
+    "bride": "Shweta Dagade",
+    "groomGujarati": "ચિ. ઓમકાર ચવાણ",
+    "brideGujarati": "ચિ. સૌ. કાં. શ્વેતા ડાગડે",
+    "groomParents": "Umeshbhai Chavan and Lataben Chavan",
+    "brideParents": "Mahadevbhai Dagade and Madhuriben Dagade",
+    "groomParentsGujarati": "શ્રી ઉમેશભાઈ અને શ્રીમતી લતાબેન ચવાણ",
+    "brideParentsGujarati": "શ્રી મહાદેવભાઈ અને શ્રીમતી માધુરીબેન ડાગડે",
+    "groomDevanagari": "ઓમકાર",
+    "brideDevanagari": "શ્વેતા"
+  },
+  "weddingDate": "18 December 2026",
+  "weddingDateGujarati": "૧૮ ડિસેમ્બર ૨૦૨૬",
+  "venue": {
+    "name": "Mango Leaf Lake Resort",
+    "nameGujarati": "મેંગો લીફ લેક રિસોર્ટ",
+    "location": "Khadakwasla, Pune",
+    "locationGujarati": "ખડકવાસલા, પુણે",
+    "directions": "https://www.google.com/maps/dir/?api=1&destination=NDA+Rd,+near+Malai+Mata+Temple,+Khadakwasla,+Khadakwadi,+Maharashtra+411023"
+  },
+  "events": [
+    {
+      "name": "Jaan Aagman & Ponkhnu",
+      "nameGujarati": "જાન આગમન અને પોંખણું",
+      "time": "3:15 PM onwards",
+      "timeGujarati": "બપોરે ૩:૧૫ વાગ્યાથી"
+    },
+    {
+      "name": "Hastamelap & Mangal Phera",
+      "nameGujarati": "હસ્તમેળાપ અને મંગળફેરા",
+      "time": "5:40 PM",
+      "timeGujarati": "સાંજે ૫:૪૦ વાગ્યે"
+    },
+    {
+      "name": "Dinner & Reception",
+      "nameGujarati": "સ્નેહભોજન અને રિસેપ્શન",
+      "time": "8:30 PM onwards",
+      "timeGujarati": "રાત્રે ૮:૩૦ વાગ્યાથી"
+    }
+  ],
+  "blessing": "વક્રતુંડ મહાકાય સૂર્યકોટિ સમપ્રભ । નિર્વિઘ્નં કુરુ મે દેવ સર્વકાર્યેષુ સર્વદા ॥",
+  "attire": {
+    "wedding": {
+      "ladies": [
+        "Panetar saree (પાણેતર સાડી)"
+      ],
+      "gentlemen": [
+        "Royal Sherwani set",
+        "Kurta set with Bandi jacket",
+        "Traditional Gujarati kurta",
+        "Nehru jacket set"
+      ],
+      "colors": [
+        "#9e1b34",
+        "#cf9738",
+        "#1a5b4c",
+        "#e5a823",
+        "#bf2659"
+      ]
+    },
+    "reception": {
+      "ladies": [
+        "Designer Chaniya Choli",
+        "Embellished lehenga",
+        "Draped saree",
+        "Indo-Western gown"
+      ],
+      "gentlemen": [
+        "Royal Bandhgala set",
+        "Classic tuxedo",
+        "Formal suit",
+        "Modern Jodhpuri suit"
+      ],
+      "colors": [
+        "#b38a43",
+        "#b88979",
+        "#162e4c",
+        "#623151",
+        "#927775"
+      ]
+    }
+  },
+  "videos": {
+    "door": "assets/door.mp4",
+    "hands": null,
+    "blessing": null,
+    "family": null,
+    "ceremony": null,
+    "reception": null
+  },
+  "music": {
+    "src": null,
+    "title": "Jashn-e-Bahaaraa — instrumental"
+  },
+  "weddingDateISO": "2026-12-18"
+}
