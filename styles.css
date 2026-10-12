@@ -7,6 +7,7 @@
   --line: #d8c39e;
   --serif: 'Cormorant Garamond', Georgia, serif;
   --gujarati: 'Noto Serif Gujarati', 'Anek Gujarati', serif;
+  --devanagari: 'Noto Serif Devanagari', 'Noto Serif Gujarati', serif;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 14px); }
@@ -51,7 +52,7 @@ p { text-wrap: pretty; }
 .entrance-date { margin-bottom: 18px; font-size: 18px; font-family: var(--gujarati); color: var(--ink); }
 .opening-skip { position: absolute; right: 20px; top: max(20px, env(safe-area-inset-top)); background: var(--paper); padding: 10px 16px; font-size: 15px; border-radius: 3px; border: 1px solid var(--line); }
 .entrance.opening .entrance-copy { opacity: 0; pointer-events: none; }
-.entrance.fading-out { opacity: 0; pointer-events: none; }
+.entrance.fading-out { position: fixed; inset: 0; z-index: 100; opacity: 0; pointer-events: none; }
 .at-entrance .site-header, .at-entrance main { display: none; }
 
 /* Sticky Header */
@@ -130,8 +131,8 @@ nav a:hover, nav a[aria-current] { color: var(--wine); text-decoration: underlin
 .blessing-section { border-top: 1px solid var(--line); }
 .blessing-copy { position: absolute; inset: 0; text-align: center; z-index: 3; }
 .mantra { position: absolute; top: 25.8%; left: 17%; width: 66%; font: 2.85cqw/1.85 var(--gujarati); color: var(--gold); margin: 0; }
-.blessing-copy h2 { position: absolute; top: 38.5%; left: 20%; width: 60%; font: 7.6cqw/1.45 var(--gujarati); margin: 0; }
-.blessing-names { position: absolute; top: 51.5%; height: 14.8%; left: 25%; width: 50%; display: flex; flex-direction: column; justify-content: space-between; margin: 0; font: 7.2cqw/1.25 var(--gujarati); color: var(--wine); }
+.blessing-copy h2 { position: absolute; top: 38.5%; left: 20%; width: 60%; font: 7.6cqw/1.45 var(--devanagari), var(--gujarati); margin: 0; }
+.blessing-names { position: absolute; top: 51.5%; height: 14.8%; left: 25%; width: 50%; display: flex; flex-direction: column; justify-content: space-between; margin: 0; font: 7.2cqw/1.25 var(--devanagari), var(--gujarati); color: var(--wine); }
 .blessing-names .name-join { font-size: 3.3cqw; color: var(--gold); }
 .blessing-note > p:not(.eyebrow) { font-size: 25px; max-width: 30ch; line-height: 1.5; }
 .blessing-en { font-family: var(--serif); font-style: italic; font-size: 20px; color: #6d4b35; margin-top: 14px; }

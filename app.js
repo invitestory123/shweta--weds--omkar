@@ -30,15 +30,15 @@ function finishOpening() {
   if (entranceState === 'finished' || entranceState === 'finishing') return;
   clearTimeout(openingTimer);
   entranceState = 'finishing';
+  document.body.classList.remove('at-entrance');
   entrance.classList.add('fading-out');
+  releasePetals(40);
   fadeTimer = setTimeout(() => {
     openingVideo.pause();
     entrance.hidden = true;
     entranceState = 'finished';
-    document.body.classList.remove('at-entrance');
     window.scrollTo({ top: 0, behavior: 'instant' });
     $('#invitation').focus({ preventScroll: true });
-    releasePetals(40);
   }, motionPaused ? 0 : 450);
 }
 
@@ -50,17 +50,24 @@ function openInvitation() {
   $('#opening-status').textContent = 'કંકોતરી ખુલી રહી છે…';
   if (audio) playMusic();
   if (motionPaused) return finishOpening();
-  // A slow or blocked video must never lock guests out of the invitation.
-  openingTimer = setTimeout(finishOpening, 10000);
+  openingTimer = setTimeout(finishOpening, 4000);
   openingVideo.currentTime = 0;
+  openingVideo.playbackRate = 1.35;
   openingVideo.play().catch(finishOpening);
 }
 
 openingVideo.addEventListener('playing', () => {
   if (!['loading', 'playing'].includes(entranceState)) return openingVideo.pause();
   entranceState = 'playing';
+  openingVideo.playbackRate = 1.35;
   entrance.classList.add('opening');
   openingVideo.classList.add('is-playing');
+});
+openingVideo.addEventListener('timeupdate', () => {
+  // As soon as the doors swing open (~1.2s), immediately transition into the next slide!
+  if (entranceState === 'playing' && openingVideo.currentTime >= 1.25) {
+    finishOpening();
+  }
 });
 openingVideo.addEventListener('ended', finishOpening);
 openingVideo.addEventListener('error', () => {
@@ -329,6 +336,9 @@ $('#music-toggle').addEventListener('click', () => {
   if (audio.paused) playMusic();
   else { musicRequested = false; audio.pause(); $('#music-toggle').textContent = 'સંગીત વગાડો'; $('#music-toggle').setAttribute('aria-pressed', 'false'); }
 });
+document.addEventListener('pointerdown', () => {
+  if (musicRequested && audio && audio.paused) playMusic();
+}, { passive: true });
 document.addEventListener('visibilitychange', () => {
   document.body.classList.toggle('page-hidden', document.hidden);
   sceneVideos.forEach(updateSceneVideo);

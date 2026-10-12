@@ -8,8 +8,8 @@
     "brideParents": "Mahadevbhai Dagade and Madhuriben Dagade",
     "groomParentsGujarati": "શ્રી ઉમેશભાઈ અને શ્રીમતી લતાબેન ચવાણ",
     "brideParentsGujarati": "શ્રી મહાદેવભાઈ અને શ્રીમતી માધુરીબેન ડાગડે",
-    "groomDevanagari": "ઓમકાર",
-    "brideDevanagari": "શ્વેતા"
+    "groomDevanagari": "ओमकार",
+    "brideDevanagari": "श्वेता"
   },
   "weddingDate": "18 December 2026",
   "weddingDateGujarati": "૧૮ ડિસેમ્બર ૨૦૨૬",
@@ -36,8 +36,8 @@
     {
       "name": "Dinner & Reception",
       "nameGujarati": "સ્નેહભોજન અને રિસેપ્શન",
-      "time": "8:30 PM onwards",
-      "timeGujarati": "રાત્રે ૮:૩૦ વાગ્યાથી"
+      "time": "7:30 PM onwards",
+      "timeGujarati": "સાંજે ૭:૩૦ વાગ્યાથી"
     }
   ],
   "blessing": "વક્રતુંડ મહાકાય સૂર્યકોટિ સમપ્રભ । નિર્વિઘ્નં કુરુ મે દેવ સર્વકાર્યેષુ સર્વદા ॥",
@@ -91,7 +91,7 @@
     "reception": null
   },
   "music": {
-    "src": null,
+    "src": "assets/bgm.mp3",
     "title": "Jashn-e-Bahaaraa — instrumental"
   },
   "weddingDateISO": "2026-12-18"

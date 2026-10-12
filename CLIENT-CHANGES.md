@@ -11,14 +11,15 @@ Source: `.private/whatsapp/_chat.txt`, with the four annotated reference images 
 | Fuller flower shower | Recurring, bounded petal animation after opening and on date reveal. |
 | More motion on ceremony and reception pages, including lights | Lamp glows, twinkles, lake shimmer and animated reception fairy lights. |
 | Shweta's name overlaps the floral frame | Explicitly positioned name block inside the frame; type scales with artwork width. |
-| Names in Hindi/Devanagari on the blessing page | ओंकार and श्वेता, with Marathi conjunction आणि, matching the existing शुभ विवाह treatment. |
+| Names in Hindi/Devanagari on the blessing page | Corrected groom's name in Devanagari to ओमकार (matching uploaded card photo) and bride's name to श्वेता with Marathi conjunction आणि under ॥ शुभविवाह ॥. |
 | Mahadev → Mahadeo | Mahadeo Dagade in HTML and configuration. |
 | Vidhi begins 3:15 onwards | 3:15 PM onwards in HTML, configuration and calendar export. |
 | Ladies' wedding theme: only Paithani saree | Single Paithani feature showing the first original illustration; other wedding saree types removed from guest-facing content. Reception outfits retained. |
 | Venue directions | Maps directions to the address supplied in the chat. |
-| Preferred music | Player is ready; requested instrumental file was not included. Pending audio asset. |
+| Preferred music | Jashn-e-Bahaaraa instrumental integrated as assets/bgm.mp3 with autoplay on entrance and persistent player toggle. |
+| Reception time | Updated to 7:30 PM onwards in HTML, JSON configuration, and wedding.ics calendar export. |
+| Door opening transition | Eliminated 6-second wait at empty hallway; doors briskly open and transition immediately into the invitation slide with falling petals and music. |
 | The update must actually appear | Repeatable source-to-dist build, versioned code/configuration and HTML cache headers. |
 
-The 2026 year, Mangalashtaka at 5:40 PM, and Dinner & Reception at 8:30 PM were retained from the supplied project. No further time changes were specified in the export.
+The 2026 year and Mangalashtaka at 5:40 PM were retained from the supplied project. Reception updated to 7:30 PM onwards.
 
-This work prepares the local site and deployment output. It does not publish to the live URL or message the client.
