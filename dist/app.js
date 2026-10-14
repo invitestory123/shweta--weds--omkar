@@ -9,7 +9,7 @@ let fadeTimer;
 let audio = $('#bgm') || new Audio('assets/bgm.mp3');
 audio.loop = true;
 try { audio.volume = 0.8; } catch {}
-let musicRequested = false;
+let musicRequested = true;
 const entrance = $('#entrance');
 const openingVideo = $('#opening-video');
 const openingLabel = $('#open-invitation').innerHTML;
@@ -36,6 +36,7 @@ function finishOpening() {
   document.body.classList.remove('at-entrance');
   entrance.classList.add('fading-out');
   releasePetals(40);
+  if (musicRequested && audio && audio.paused) playMusic();
   fadeTimer = setTimeout(() => {
     openingVideo.pause();
     entrance.hidden = true;
@@ -321,20 +322,51 @@ if (context) {
   $('#scratch-instruction').textContent = 'We can’t wait to celebrate with you.';
 }
 
+function updateMusicUI(isPlaying) {
+  const musicToggle = $('#music-toggle');
+  const entranceToggle = $('#entrance-music-toggle');
+  const status = $('#music-status');
+  if (isPlaying) {
+    if (musicToggle) {
+      musicToggle.textContent = 'સંગીત રોકો';
+      musicToggle.setAttribute('aria-pressed', 'true');
+    }
+    if (entranceToggle) {
+      entranceToggle.textContent = '🔊 સંગીત રોકો';
+      entranceToggle.setAttribute('aria-pressed', 'true');
+    }
+    if (status) status.textContent = 'સંગીત વાગી રહ્યું છે.';
+  } else {
+    if (musicToggle) {
+      musicToggle.textContent = 'સંગીત વગાડો';
+      musicToggle.setAttribute('aria-pressed', 'false');
+    }
+    if (entranceToggle) {
+      entranceToggle.textContent = '🎵 સંગીત વગાડો';
+      entranceToggle.setAttribute('aria-pressed', 'false');
+    }
+    if (status) status.textContent = musicRequested ? 'સંગીત વગાડવા માટે અહીં અથવા સ્ક્રીન પર ટેપ કરો.' : 'સંગીત બંધ કર્યું છે.';
+  }
+}
+
+if (audio) {
+  audio.addEventListener('play', () => updateMusicUI(true));
+  audio.addEventListener('playing', () => updateMusicUI(true));
+  audio.addEventListener('pause', () => updateMusicUI(false));
+}
+
 async function playMusic() {
   if (!audio) return;
   musicRequested = true;
   try {
+    audio.muted = false;
     await audio.play();
-    $('#music-toggle').textContent = 'સંગીત રોકો';
-    $('#music-toggle').setAttribute('aria-pressed', 'true');
-    $('#music-status').textContent = 'સંગીત વાગી રહ્યું છે.';
+    updateMusicUI(true);
   } catch {
-    $('#music-toggle').textContent = 'સંગીત વગાડો';
-    $('#music-toggle').setAttribute('aria-pressed', 'false');
-    $('#music-status').textContent = 'સંગીત વગાડવા માટે અહીં અથવા સ્ક્રીન પર ટેપ કરો.';
+    updateMusicUI(false);
   }
 }
+
 $('#music-toggle').addEventListener('click', () => {
   if (!audio) return;
   if (audio.paused) {
@@ -342,17 +374,39 @@ $('#music-toggle').addEventListener('click', () => {
   } else {
     musicRequested = false;
     audio.pause();
-    $('#music-toggle').textContent = 'સંગીત વગાડો';
-    $('#music-toggle').setAttribute('aria-pressed', 'false');
-    $('#music-status').textContent = 'સંગીત બંધ કર્યું છે.';
+    updateMusicUI(false);
   }
 });
-const resumeMusicIfRequested = () => {
-  if (musicRequested && audio && audio.paused) playMusic();
+
+const entranceToggle = $('#entrance-music-toggle');
+if (entranceToggle) {
+  entranceToggle.addEventListener('click', event => {
+    event.stopPropagation();
+    if (!audio) return;
+    if (audio.paused) {
+      playMusic();
+    } else {
+      musicRequested = false;
+      audio.pause();
+      updateMusicUI(false);
+    }
+  });
+}
+
+const unlockMusic = () => {
+  if (musicRequested && audio && audio.paused) {
+    playMusic();
+  }
 };
-['pointerdown', 'touchstart', 'click', 'keydown'].forEach(type => {
-  document.addEventListener(type, resumeMusicIfRequested, { passive: true });
+['click', 'touchstart', 'touchend', 'pointerdown', 'keydown'].forEach(type => {
+  window.addEventListener(type, unlockMusic, { passive: true });
+  document.addEventListener(type, unlockMusic, { passive: true });
 });
+
+// Attempt autoplay immediately when opening the link
+try { audio.load(); } catch {}
+playMusic();
+
 document.addEventListener('visibilitychange', () => {
   document.body.classList.toggle('page-hidden', document.hidden);
   sceneVideos.forEach(updateSceneVideo);
@@ -366,7 +420,7 @@ document.addEventListener('visibilitychange', () => {
 });
 
 // Static copy is generated from this same file by scripts/build.mjs.
-fetch('invitation.json?v=e533a1110bbc').then(response => {
+fetch('invitation.json?v=670aa08d3ac6').then(response => {
   if (!response.ok) throw new Error('Configuration unavailable');
   return response.json();
 }).then(config => {

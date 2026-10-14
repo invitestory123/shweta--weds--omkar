@@ -31,6 +31,7 @@
       <img src="assets/door-poster.webp" width="720" height="1280" alt="Carved wooden doors adorned with lotus flowers and garlands" fetchpriority="high">
       <video id="opening-video" src="assets/door.mp4" muted playsinline preload="none" poster="assets/door-poster.webp" aria-hidden="true"></video>
     </div>
+    <button id="entrance-music-toggle" class="entrance-music-toggle" type="button" aria-pressed="false" aria-label="સંગીત શરૂ કરો અથવા રોકો (Toggle music)">🎵 સંગીત વગાડો</button>
     <a class="opening-skip text-link" href="#invitation">Skip opening</a>
     <div class="entrance-copy">
       <p class="eyebrow auspicious-line">॥ શ્રી ગણેશાય નમઃ ॥ · પરિવારના આશીર્વાદ સાથે</p>
@@ -280,7 +281,7 @@
     </footer>
   </main>
   <div id="petals" aria-hidden="true"></div>
-  <audio id="bgm" src="assets/bgm.mp3" preload="auto" loop playsinline></audio>
+  <audio id="bgm" src="assets/bgm.mp3" autoplay preload="auto" loop playsinline webkit-playsinline></audio>
   <p id="music-status" class="sr-only" role="status"></p>
   <noscript><style>.attire-tabs,.scratch-instruction{display:none}#reception-attire[hidden]{display:block!important}</style></noscript>
   <script src="app.js" defer></script>

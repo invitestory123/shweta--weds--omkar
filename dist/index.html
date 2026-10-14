@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Gujarati:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/door-poster.webp">
-  <link rel="stylesheet" href="styles.css?v=e533a1110bbc">
+  <link rel="stylesheet" href="styles.css?v=670aa08d3ac6">
 </head>
 <body>
   <a class="skip" href="#invitation">કંકોતરી જુઓ · Skip to invitation</a>
@@ -31,6 +31,7 @@
       <img src="assets/door-poster.webp" width="720" height="1280" alt="Carved wooden doors adorned with lotus flowers and garlands" fetchpriority="high">
       <video id="opening-video" src="assets/door.mp4" muted playsinline preload="none" poster="assets/door-poster.webp" aria-hidden="true"></video>
     </div>
+    <button id="entrance-music-toggle" class="entrance-music-toggle" type="button" aria-pressed="false" aria-label="સંગીત શરૂ કરો અથવા રોકો (Toggle music)">🎵 સંગીત વગાડો</button>
     <a class="opening-skip text-link" href="#invitation">Skip opening</a>
     <div class="entrance-copy">
       <p class="eyebrow auspicious-line">॥ શ્રી ગણેશાય નમઃ ॥ · પરિવારના આશીર્વાદ સાથે</p>
@@ -280,9 +281,9 @@
     </footer>
   </main>
   <div id="petals" aria-hidden="true"></div>
-  <audio id="bgm" src="assets/bgm.mp3" preload="auto" loop playsinline></audio>
+  <audio id="bgm" src="assets/bgm.mp3" autoplay preload="auto" loop playsinline webkit-playsinline></audio>
   <p id="music-status" class="sr-only" role="status"></p>
   <noscript><style>.attire-tabs,.scratch-instruction{display:none}#reception-attire[hidden]{display:block!important}</style></noscript>
-  <script src="app.js?v=e533a1110bbc" defer></script>
+  <script src="app.js?v=670aa08d3ac6" defer></script>
 </body>
 </html>
