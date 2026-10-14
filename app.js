@@ -8,7 +8,7 @@ let openingTimer;
 let fadeTimer;
 let audio = $('#bgm') || new Audio('assets/bgm.mp3');
 audio.loop = true;
-try { audio.volume = 0.45; } catch {}
+try { audio.volume = 0.8; } catch {}
 let musicRequested = false;
 const entrance = $('#entrance');
 const openingVideo = $('#opening-video');
@@ -379,7 +379,7 @@ fetch('invitation.json').then(response => {
     if (!audio) {
       audio = new Audio(config.music.src);
       audio.loop = true;
-      try { audio.volume = .45; } catch {}
+      try { audio.volume = 0.8; } catch {}
     } else if (audio.src && !audio.src.endsWith(config.music.src)) {
       const wasPlaying = !audio.paused;
       audio.src = config.music.src;
