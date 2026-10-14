@@ -6,7 +6,9 @@ let motionPaused = motionPreference.matches;
 let entranceState = 'closed';
 let openingTimer;
 let fadeTimer;
-let audio;
+let audio = $('#bgm') || new Audio('assets/bgm.mp3');
+audio.loop = true;
+try { audio.volume = 0.45; } catch {}
 let musicRequested = false;
 const entrance = $('#entrance');
 const openingVideo = $('#opening-video');
@@ -19,6 +21,7 @@ const visibleScenes = new Set();
 // The invitation remains readable if JavaScript is unavailable.
 entrance.hidden = false;
 document.body.classList.add('at-entrance');
+$('#music-toggle').hidden = false;
 $('#motion-toggle').hidden = false;
 $('#replay-entrance').hidden = false;
 new ResizeObserver(entries => {
@@ -78,6 +81,7 @@ for (const link of document.querySelectorAll('.opening-skip, .skip')) {
   link.addEventListener('click', event => {
     if (entranceState !== 'finished') {
       event.preventDefault();
+      playMusic();
       finishOpening();
     }
   });
@@ -324,21 +328,31 @@ async function playMusic() {
     await audio.play();
     $('#music-toggle').textContent = 'સંગીત રોકો';
     $('#music-toggle').setAttribute('aria-pressed', 'true');
+    $('#music-status').textContent = 'સંગીત વાગી રહ્યું છે.';
   } catch {
-    musicRequested = false;
     $('#music-toggle').textContent = 'સંગીત વગાડો';
     $('#music-toggle').setAttribute('aria-pressed', 'false');
-    $('#music-status').textContent = 'સંગીત વાગી શક્યું નથી. ફરીથી સંગીત વગાડો પર ટેપ કરો.';
+    $('#music-status').textContent = 'સંગીત વગાડવા માટે અહીં અથવા સ્ક્રીન પર ટેપ કરો.';
   }
 }
 $('#music-toggle').addEventListener('click', () => {
   if (!audio) return;
-  if (audio.paused) playMusic();
-  else { musicRequested = false; audio.pause(); $('#music-toggle').textContent = 'સંગીત વગાડો'; $('#music-toggle').setAttribute('aria-pressed', 'false'); }
+  if (audio.paused) {
+    playMusic();
+  } else {
+    musicRequested = false;
+    audio.pause();
+    $('#music-toggle').textContent = 'સંગીત વગાડો';
+    $('#music-toggle').setAttribute('aria-pressed', 'false');
+    $('#music-status').textContent = 'સંગીત બંધ કર્યું છે.';
+  }
 });
-document.addEventListener('pointerdown', () => {
+const resumeMusicIfRequested = () => {
   if (musicRequested && audio && audio.paused) playMusic();
-}, { passive: true });
+};
+['pointerdown', 'touchstart', 'click', 'keydown'].forEach(type => {
+  document.addEventListener(type, resumeMusicIfRequested, { passive: true });
+});
 document.addEventListener('visibilitychange', () => {
   document.body.classList.toggle('page-hidden', document.hidden);
   sceneVideos.forEach(updateSceneVideo);
@@ -347,7 +361,7 @@ document.addEventListener('visibilitychange', () => {
     if (audio) audio.pause();
   } else {
     if (entranceState === 'playing') openingVideo.play().catch(finishOpening);
-    if (musicRequested) playMusic();
+    if (musicRequested && audio && audio.paused) playMusic();
   }
 });
 
@@ -362,10 +376,16 @@ fetch('invitation.json').then(response => {
   });
   if (config.venue?.directions) document.querySelectorAll('[data-directions]').forEach(link => { link.href = config.venue.directions; });
   if (config.music?.src) {
-    audio = new Audio(config.music.src);
-    audio.loop = true;
-    audio.preload = 'none';
-    audio.volume = .45;
+    if (!audio) {
+      audio = new Audio(config.music.src);
+      audio.loop = true;
+      try { audio.volume = .45; } catch {}
+    } else if (audio.src && !audio.src.endsWith(config.music.src)) {
+      const wasPlaying = !audio.paused;
+      audio.src = config.music.src;
+      if (wasPlaying || musicRequested) playMusic();
+    }
     $('#music-toggle').hidden = false;
+    if (musicRequested && audio.paused) playMusic();
   }
 }).catch(() => { /* All confirmed invitation details are also present in the HTML. */ });

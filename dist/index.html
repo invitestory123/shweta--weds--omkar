@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Gujarati:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/door-poster.webp">
-  <link rel="stylesheet" href="styles.css?v=71af0c19e646">
+  <link rel="stylesheet" href="styles.css?v=214884b0982e">
 </head>
 <body>
   <a class="skip" href="#invitation">કંકોતરી જુઓ · Skip to invitation</a>
@@ -49,7 +49,7 @@
       <a href="#attire"><span class="nav-gu">પરિધાન</span></a>
     </nav>
     <div class="header-controls">
-      <button id="music-toggle" class="quiet-button" aria-pressed="false" hidden>સંગીત વગાડો</button>
+      <button id="music-toggle" class="quiet-button" aria-pressed="false">સંગીત વગાડો</button>
       <button id="motion-toggle" class="quiet-button" aria-pressed="false" hidden>Pause motion</button>
     </div>
   </header>
@@ -280,8 +280,9 @@
     </footer>
   </main>
   <div id="petals" aria-hidden="true"></div>
+  <audio id="bgm" src="assets/bgm.mp3" preload="auto" loop playsinline></audio>
   <p id="music-status" class="sr-only" role="status"></p>
   <noscript><style>.attire-tabs,.scratch-instruction{display:none}#reception-attire[hidden]{display:block!important}</style></noscript>
-  <script src="app.js?v=71af0c19e646" defer></script>
+  <script src="app.js?v=214884b0982e" defer></script>
 </body>
 </html>
